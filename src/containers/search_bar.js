@@ -5,20 +5,24 @@ export default class App extends Component {
         super(props);
 
         this.state = { term: ''};
+
+        this.onInputChange = this.onInputChange.bind(this);
     }
 
     onInputChange(event){
-        console.log(event.target.value);
+        this.setState({term: event.target.value});
     }
 
-
+    onFormSubmit(e){
+        e.preventDefault();
+    }
 
     render(){
         return(
-            <form className="input-group">
+            <form onSubmit={this.onFormSubmit} className="input-group">
                 <input
                     placeholder="Get a five day forecast in your favorite city"
-                    class="form-control"
+                    className="form-control"
                     value={this.state.term}
                     onChange={this.onInputChange}
                 />
